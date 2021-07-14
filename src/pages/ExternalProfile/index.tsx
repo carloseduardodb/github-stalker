@@ -28,11 +28,16 @@ interface userProps {
   following: number;
 }
 
-const FollowerProfile = () => {
+const ExternalProfile = () => {
   const { login } = useParams();
   const [follower, setFollower] = useState<userProps>();
   const { handleModifyUser } = useUser();
   const history = useHistory();
+
+  function modifyUser(userData: userProps) {
+    handleModifyUser(userData);
+    history.push("/home");
+  }
 
   useEffect(() => {
     api
@@ -66,13 +71,15 @@ const FollowerProfile = () => {
     <MobileNavigator>
       <section className="relative min-h-screen">
         <nav className="flex justify-between pt-5 px-5 pb-16 bg-p-black">
-          <button onClick={history.goBack}>
-            <FiArrowLeft size={20} color="#ffffff" />
-          </button>
-          <p className="font-bold text-sm">untextoquelauqerr</p>
+          <div className="flex items-center gap-x-3">
+            <button onClick={history.goBack}>
+              <FiArrowLeft size={20} color="#ffffff" />
+            </button>
+            <p className="font-bold text-sm">Stalkeando</p>
+          </div>
           <button
             onClick={() => {
-              follower && handleModifyUser(follower);
+              follower && modifyUser(follower);
             }}
             className="flex items-center gap-x-2 text-white font-extralight"
           >
@@ -84,7 +91,7 @@ const FollowerProfile = () => {
           <img
             src={follower?.avatar_url}
             alt="Sua imagem"
-            className="w-1/4 rounded-full border-4 border-white"
+            className="w-1/4 rounded-full border-4 border-white sm:w-32"
           />
         </div>
         <div className="px-7">
@@ -98,7 +105,7 @@ const FollowerProfile = () => {
             </ul>
           </section>
           <section>
-            <ul className="grid grid-cols-3 mt-10 bg-p-black-light w-screen -ml-7 py-4">
+            <ul className="grid grid-cols-3 mt-10 bg-p-black-light sm:w-full sm:-ml-0 w-screen -ml-7 py-4">
               <li className="flex flex-col text-center">
                 <span className="text-4xl font-bold">
                   {follower?.followers}
@@ -128,10 +135,9 @@ const FollowerProfile = () => {
             <p className="text-white font-extralight">{follower?.bio}</p>
           </section>
         </div>
-        <p>Olá</p>
       </section>
     </MobileNavigator>
   );
 };
 
-export default FollowerProfile;
+export default ExternalProfile;

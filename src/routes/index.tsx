@@ -1,5 +1,5 @@
 import { useUser } from "hooks/useUser";
-import FollowerProfile from "pages/FollowerProfile";
+import ExternalProfile from "pages/ExternalProfile";
 import Followers from "pages/Followers";
 import Following from "pages/Following";
 import Home from "pages/Home";
@@ -20,7 +20,7 @@ const Routes = () => {
             <Route path="/repositories" component={Repositories} />
             <Route path="/followers" component={Followers} />
             <Route path="/following" component={Following} />
-            <Route path="/follower/:login" component={FollowerProfile} />
+            <Route path="/externalProfile/:login" component={ExternalProfile} />
           </>
         ) : (
           <Redirect to="/login" />

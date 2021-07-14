@@ -36,7 +36,7 @@ export function UserContextProvider(props: UserContextProviderProps) {
   const [user, setUser] = useState<userProps | any>(() => {
     const storageUser = localStorage.getItem("user");
     if (storageUser) {
-      return JSON.parse(JSON.parse(JSON.parse(storageUser)));
+      return JSON.parse(storageUser);
     }
     return false;
   });

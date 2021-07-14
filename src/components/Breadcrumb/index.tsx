@@ -9,7 +9,7 @@ type breadcrumbProps = {
 const Breadcrumb = ({ children }: breadcrumbProps) => {
   const history = useHistory();
   return (
-    <nav className="grid grid-cols-3 grid-flow-row p-4 bg-p-black">
+    <nav className="flex flex-row gap-x-3 p-4 bg-p-black">
       <button
         onClick={() => {
           history.goBack();
@@ -17,7 +17,7 @@ const Breadcrumb = ({ children }: breadcrumbProps) => {
       >
         <FiArrowLeft size={20} color="#ffffff" />
       </button>
-      <p className="col-span-2 font-bold text-sm">{children}</p>
+      <div className="col-span-2 font-bold text-sm">{children}</div>
     </nav>
   );
 };

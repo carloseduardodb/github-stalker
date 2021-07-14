@@ -16,7 +16,7 @@ const Repository: React.FC<repositoryProps> = ({
   return (
     <li className="px-7 py-4 border-b border-p-gray">
       <TitleLeftStyle>
-        <h2 className="font-bold">{name}</h2>
+        <p className="font-bold">{name}</p>
       </TitleLeftStyle>
       <span>{description}</span>
       <div className="flex flex-row justify-between py-3">

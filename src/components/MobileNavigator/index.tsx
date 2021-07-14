@@ -11,57 +11,67 @@ interface mobileNavigatorProps {
 const MobileNavigator = ({ children }: mobileNavigatorProps) => {
   const history = useHistory();
   return (
-    <>
-      {children}
-      <nav className="fixed bottom-0 bg-white w-full py-2 rounded-t-xl">
-        <ul className="grid grid-cols-4 text-p-gray">
-          <Link to="/home">
-            <li
-              className={`${
-                history.location.pathname === "/home"
-                  ? "text-p-black"
-                  : "text-p-gray"
-              } flex flex-col-reverse justify-center items-center text-xs`}
-            >
-              Home <FiHome size={20} />
+    <div className="sm:flex sm:flex-col sm:items-center">
+      <div className="sm:w-9/12">
+        {children}
+        <nav className="fixed bottom-0 bg-white w-full py-2 rounded-t-xl sm:w-9/12">
+          <ul className="grid grid-cols-4 text-p-gray">
+            <li>
+              <Link to="/home">
+                <span
+                  className={`${
+                    history.location.pathname === "/home"
+                      ? "text-p-black"
+                      : "text-p-gray"
+                  } flex flex-col-reverse justify-center items-center text-xs`}
+                >
+                  Home <FiHome size={20} />
+                </span>
+              </Link>
             </li>
-          </Link>
-          <Link to="/repositories">
-            <li
-              className={`${
-                history.location.pathname === "/repositories"
-                  ? "text-p-black"
-                  : "text-p-gray"
-              } flex flex-col-reverse justify-center items-center text-xs`}
-            >
-              Repos <FiGithub size={20} />
+            <li>
+              <Link to="/repositories">
+                <span
+                  className={`${
+                    history.location.pathname === "/repositories"
+                      ? "text-p-black"
+                      : "text-p-gray"
+                  } flex flex-col-reverse justify-center items-center text-xs`}
+                >
+                  Repos <FiGithub size={20} />
+                </span>
+              </Link>
             </li>
-          </Link>
-          <Link to="/followers">
-            <li
-              className={`${
-                history.location.pathname === "/followers"
-                  ? "text-p-black"
-                  : "text-p-gray"
-              } flex flex-col-reverse justify-center items-center text-xs`}
-            >
-              Seguidores <FiUsers size={20} />
+            <li>
+              <Link to="/followers">
+                <span
+                  className={`${
+                    history.location.pathname === "/followers"
+                      ? "text-p-black"
+                      : "text-p-gray"
+                  } flex flex-col-reverse justify-center items-center text-xs`}
+                >
+                  Seguidores <FiUsers size={20} />
+                </span>
+              </Link>
             </li>
-          </Link>
-          <Link to="/following">
-            <li
-              className={`${
-                history.location.pathname === "/following"
-                  ? "text-p-black"
-                  : "text-p-gray"
-              } flex flex-col-reverse justify-center items-center text-xs`}
-            >
-              Seguindo <FiUsers size={20} />
+            <li>
+              <Link to="/following">
+                <span
+                  className={`${
+                    history.location.pathname === "/following"
+                      ? "text-p-black"
+                      : "text-p-gray"
+                  } flex flex-col-reverse justify-center items-center text-xs`}
+                >
+                  Seguindo <FiUsers size={20} />
+                </span>
+              </Link>
             </li>
-          </Link>
-        </ul>
-      </nav>
-    </>
+          </ul>
+        </nav>
+      </div>
+    </div>
   );
 };
 

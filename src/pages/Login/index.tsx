@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Input from "../../components/Input";
 import githubLogo from "./../../assets/github-logo.svg";
 import { FiArrowRight } from "react-icons/fi";
@@ -46,7 +46,8 @@ const Login = () => {
     }
   });
 
-  async function handleLogin() {
+  async function handleLogin(event: FormEvent) {
+    event.preventDefault();
     if (!username) {
       setAlertError({ active: true, message: "Campo Obrigatório" });
       return;
@@ -75,14 +76,14 @@ const Login = () => {
         handleModifyUser(user);
       })
       .catch((err: AxiosError) => {
-        setAlertError({ active: true, message: "Esse suário não existe" });
+        setAlertError({ active: true, message: "Esse usuário não existe" });
         return;
       });
   }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-y-10 px-10">
       <img src={githubLogo} alt="" />
-      <div className="flex flex-col gap-5 w-full sm:max-w-xs">
+      <form className="flex flex-col gap-5 w-full sm:max-w-xs">
         <Input
           type="text"
           value={username}
@@ -94,10 +95,10 @@ const Login = () => {
           }}
           error={alertError}
         />
-        <Button onClick={handleLogin}>
+        <Button type="submit" onClick={handleLogin}>
           Entrar <FiArrowRight />
         </Button>
-      </div>
+      </form>
     </div>
   );
 };

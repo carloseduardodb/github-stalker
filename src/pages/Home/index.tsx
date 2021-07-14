@@ -39,7 +39,7 @@ const Home = () => {
             </ul>
           </section>
           <section>
-            <ul className="grid grid-cols-3 mt-10 bg-p-black-light w-screen -ml-7 py-4">
+            <ul className="grid grid-cols-3 mt-10 bg-p-black-light sm:w-full sm:-ml-0 w-screen -ml-7 py-4">
               <li className="flex flex-col text-center">
                 <span className="text-4xl font-bold">{user.followers}</span>
                 <span>Seguidores</span>

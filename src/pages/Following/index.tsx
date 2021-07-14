@@ -39,7 +39,9 @@ const Following = () => {
   }, []);
   return (
     <MobileNavigator>
-      <Breadcrumb>{following?.length} seguindo</Breadcrumb>
+      <Breadcrumb>
+        <h2>{following?.length} seguindo</h2>
+      </Breadcrumb>
       <ul className="pb-14">
         {following?.map((follower: followingProps) => (
           <li key={follower.id} className="border-b border-p-gray">

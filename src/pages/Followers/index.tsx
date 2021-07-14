@@ -39,7 +39,9 @@ const Followers = () => {
   }, []);
   return (
     <MobileNavigator>
-      <Breadcrumb>{followers?.length} seguidores</Breadcrumb>
+      <Breadcrumb>
+        <h2>{followers?.length} seguidores</h2>
+      </Breadcrumb>
       <ul className="pb-14">
         {followers?.map((follower: followerProps) => (
           <li key={follower.id} className="border-b border-p-gray">
