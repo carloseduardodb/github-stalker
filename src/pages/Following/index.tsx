@@ -8,22 +8,22 @@ import { useState } from "react";
 import { useEffect } from "react";
 import api from "services/api";
 
-type followerProps = {
+type followingProps = {
   id: number;
   login: string;
   avatar_url: string;
 };
 
-const Followers = () => {
+const Following = () => {
   const { user } = useUser();
-  const [followers, setFollowers] = useState<followerProps[]>();
+  const [following, setFollowing] = useState<followingProps[]>();
   useEffect(() => {
     api
-      .get(`/users/${user.login}/followers`)
+      .get(`/users/${user.login}/following`)
       .then((response: AxiosResponse) => {
-        const notFilterFollowers = response.data as followerProps[];
+        const notFilterFollowers = response.data as followingProps[];
         const filteredFollowers = notFilterFollowers.map(
-          (follower: followerProps) => {
+          (follower: followingProps) => {
             return {
               login: follower.login,
               id: follower.id,
@@ -31,7 +31,7 @@ const Followers = () => {
             };
           }
         );
-        setFollowers(filteredFollowers);
+        setFollowing(filteredFollowers);
       })
       .catch((err: Error) => {
         console.log(err);
@@ -39,9 +39,9 @@ const Followers = () => {
   }, []);
   return (
     <MobileNavigator>
-      <Breadcrumb>{followers?.length} seguidores</Breadcrumb>
+      <Breadcrumb>{following?.length} seguindo</Breadcrumb>
       <ul className="pb-14">
-        {followers?.map((follower: followerProps) => (
+        {following?.map((follower: followingProps) => (
           <li key={follower.id} className="border-b border-p-gray">
             <div className="px-7 py-5">
               <Follower
@@ -56,4 +56,4 @@ const Followers = () => {
   );
 };
 
-export default Followers;
+export default Following;

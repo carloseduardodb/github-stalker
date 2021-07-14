@@ -23,6 +23,7 @@ interface userProps {
 interface userContextType {
   user: userProps;
   handleModifyUser: (user: userProps) => void;
+  handleExitUser: () => void;
 }
 
 interface UserContextProviderProps {
@@ -37,7 +38,7 @@ export function UserContextProvider(props: UserContextProviderProps) {
     if (storageUser) {
       return JSON.parse(JSON.parse(JSON.parse(storageUser)));
     }
-    return undefined;
+    return false;
   });
 
   useEffect(() => {
@@ -48,8 +49,15 @@ export function UserContextProvider(props: UserContextProviderProps) {
     setUser(user);
   }
 
+  function handleExitUser() {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  }
+
   return (
-    <UserContext.Provider value={{ user: user, handleModifyUser }}>
+    <UserContext.Provider
+      value={{ user: user, handleModifyUser, handleExitUser }}
+    >
       {props.children}
     </UserContext.Provider>
   );
