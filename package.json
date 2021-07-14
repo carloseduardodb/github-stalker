@@ -2,6 +2,7 @@
   "name": "github-api-project-react",
   "version": "0.1.0",
   "private": true,
+  "license": "GPT-3",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.1.1",

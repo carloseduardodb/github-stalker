@@ -25,7 +25,7 @@ const Home = () => {
           <img
             src={user.avatar_url}
             alt="Sua imagem"
-            className="w-1/4 rounded-full border-4 border-white"
+            className="w-1/4 sm:w-32 rounded-full border-4 border-white"
           />
         </div>
         <div className="px-7">

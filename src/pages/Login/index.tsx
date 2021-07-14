@@ -75,13 +75,14 @@ const Login = () => {
         handleModifyUser(user);
       })
       .catch((err: AxiosError) => {
-        console.log(err);
+        setAlertError({ active: true, message: "Esse suário não existe" });
+        return;
       });
   }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-y-10 px-10">
       <img src={githubLogo} alt="" />
-      <div className="flex flex-col gap-5 w-full">
+      <div className="flex flex-col gap-5 w-full sm:max-w-xs">
         <Input
           type="text"
           value={username}
