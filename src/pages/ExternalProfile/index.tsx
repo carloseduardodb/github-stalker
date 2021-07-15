@@ -101,7 +101,9 @@ const ExternalProfile = () => {
             </TitleLeftStyle>
             <ul className="font-extralight">
               <li>{follower?.email}</li>
-              <li>{follower?.location.replace(" - ", "/")}</li>
+              {follower?.location !== null && (
+                <li>{follower?.location.replace(" - ", "/")}</li>
+              )}
             </ul>
           </section>
           <section>
