@@ -1,7 +1,7 @@
 import MobileNavigator from "components/MobileNavigator";
 import TitleLeftStyle from "components/TitleLeftStyle";
 import { useUser } from "hooks/useUser";
-import React, { useEffect } from "react";
+import React from "react";
 import { FiLogOut } from "react-icons/fi";
 
 const Home = () => {
@@ -35,7 +35,9 @@ const Home = () => {
             </TitleLeftStyle>
             <ul className="font-extralight">
               <li>{user.email}</li>
-              <li>{user.location.replace(" - ", "/")}</li>
+              {user.location !== null && (
+                <li>{user.location.replace(" - ", "/")}</li>
+              )}
             </ul>
           </section>
           <section>
