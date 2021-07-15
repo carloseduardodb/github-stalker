@@ -18,9 +18,10 @@ const Routes = () => {
           <>
             <Route path="/home" component={Home} />
             <Route path="/repositories" component={Repositories} />
-            <Route path="/followers" component={Followers} />
-            <Route path="/following" component={Following} />
-            <Route path="/externalProfile/:login" component={ExternalProfile} />
+            <Route exact path="/followers/:login" component={ExternalProfile} />
+            <Route exact path="/following/:login" component={ExternalProfile} />
+            <Route exact path="/followers" component={Followers} />
+            <Route exact path="/following" component={Following} />
           </>
         ) : (
           <Redirect to="/login" />

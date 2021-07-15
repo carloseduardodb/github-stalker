@@ -46,7 +46,7 @@ const MobileNavigator = ({ children }: mobileNavigatorProps) => {
               <Link to="/followers">
                 <span
                   className={`${
-                    history.location.pathname === "/followers"
+                    history.location.pathname.includes("followers")
                       ? "text-p-black"
                       : "text-p-gray"
                   } flex flex-col-reverse justify-center items-center text-xs`}
@@ -59,7 +59,7 @@ const MobileNavigator = ({ children }: mobileNavigatorProps) => {
               <Link to="/following">
                 <span
                   className={`${
-                    history.location.pathname === "/following"
+                    history.location.pathname.includes("/following")
                       ? "text-p-black"
                       : "text-p-gray"
                   } flex flex-col-reverse justify-center items-center text-xs`}

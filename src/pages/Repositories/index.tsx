@@ -69,13 +69,17 @@ const Repositories = () => {
   return (
     <MobileNavigator>
       <Breadcrumb>
-        <h2>{user.public_repos} repositórios</h2>
+        <h2 className="text-lg">{user.public_repos} repositórios</h2>
       </Breadcrumb>
       <InfinityScroll
         dataLength={repositories.length}
         next={handleMoreRepositories}
         hasMore={true}
-        loader={<h4>Loading...</h4>}
+        loader={
+          <p style={{ textAlign: "center" }}>
+            <h4>Loading...</h4>
+          </p>
+        }
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>

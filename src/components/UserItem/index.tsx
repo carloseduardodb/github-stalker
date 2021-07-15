@@ -2,13 +2,15 @@ import TitleLeftStyle from "components/TitleLeftStyle";
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-type followerProps = {
+type userItemProps = {
   login: string;
   avatar_url: string;
 };
 
-const Follower: React.FC<followerProps> = ({ login, avatar_url }) => {
+const UserItem: React.FC<userItemProps> = ({ login, avatar_url }) => {
+  const history = useHistory();
   return (
     <div className="flex flex-row justify-between items-center">
       <div className="gap-x-3 flex items-center">
@@ -23,11 +25,11 @@ const Follower: React.FC<followerProps> = ({ login, avatar_url }) => {
           </p>
         </TitleLeftStyle>
       </div>
-      <Link to={`externalProfile/${login}`}>
+      <Link to={`${history.location.pathname}/${login}`}>
         <FiArrowRight size={20} color="#ffffff" />
       </Link>
     </div>
   );
 };
 
-export default Follower;
+export default UserItem;

@@ -9,13 +9,13 @@ type breadcrumbProps = {
 const Breadcrumb = ({ children }: breadcrumbProps) => {
   const history = useHistory();
   return (
-    <nav className="flex flex-row gap-x-3 p-4 bg-p-black">
+    <nav className="flex flex-row gap-x-3 p-4 py-5 bg-p-black">
       <button
         onClick={() => {
           history.goBack();
         }}
       >
-        <FiArrowLeft size={20} color="#ffffff" />
+        <FiArrowLeft size={25} color="#ffffff" />
       </button>
       <div className="col-span-2 font-bold text-sm">{children}</div>
     </nav>

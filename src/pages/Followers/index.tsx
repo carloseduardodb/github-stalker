@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import Breadcrumb from "components/Breadcrumb";
-import Follower from "components/Follower";
+import UserItem from "components/UserItem";
 import MobileNavigator from "components/MobileNavigator";
 import { useUser } from "hooks/useUser";
 import React from "react";
@@ -26,6 +26,7 @@ const Followers = () => {
   const { user } = useUser();
   const [followers, setFollowers] = useState<followerProps[]>([]);
   const [index, setIndex] = useState(1);
+  const [hashMore, setHashMore] = useState(true);
 
   async function handleMoreFollowers() {
     api
@@ -42,7 +43,11 @@ const Followers = () => {
           }
         );
         if (filteredFollowers.length === 0) {
+          setHashMore(false);
           return;
+        }
+        if (filteredFollowers.length < 30) {
+          setHashMore(false);
         }
         setFollowers([...followers, ...filteredFollowers]);
         setIndex(index + 1);
@@ -58,17 +63,21 @@ const Followers = () => {
   return (
     <MobileNavigator>
       <Breadcrumb>
-        <h2>{user.followers} seguidores</h2>
+        <h2 className="text-lg">{user.followers} seguidores</h2>
       </Breadcrumb>
       {followers && (
         <InfinityScroll
           dataLength={followers.length}
           next={handleMoreFollowers}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
+          hasMore={hashMore}
+          loader={
+            <p style={{ textAlign: "center" }}>
+              <h4>Loading...</h4>
+            </p>
+          }
           endMessage={
             <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
+              <b>Sem Mais!</b>
             </p>
           }
         >
@@ -76,7 +85,7 @@ const Followers = () => {
             {followers?.map((follower: followerProps) => (
               <li key={follower.id} className="border-b border-p-gray">
                 <div className="px-7 py-5">
-                  <Follower
+                  <UserItem
                     login={follower.login}
                     avatar_url={follower.avatar_url}
                   />
