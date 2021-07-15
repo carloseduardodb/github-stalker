@@ -69,7 +69,7 @@ const Repositories = () => {
   return (
     <MobileNavigator>
       <Breadcrumb>
-        <h2>{repositories?.length} repositórios</h2>
+        <h2>{user.public_repos} repositórios</h2>
       </Breadcrumb>
       <InfinityScroll
         dataLength={repositories.length}

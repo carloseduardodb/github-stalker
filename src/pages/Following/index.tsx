@@ -51,7 +51,7 @@ const Following = () => {
   return (
     <MobileNavigator>
       <Breadcrumb>
-        <h2>{following?.length} seguindo</h2>
+        <h2>{user.following} seguindo</h2>
       </Breadcrumb>
       {following && (
         <InfinityScroll
