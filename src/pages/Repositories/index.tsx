@@ -19,7 +19,9 @@ type repositoryProps = {
 const Repositories = () => {
   const { user } = useUser();
   const [repositories, setRepositories] = useState<repositoryProps[]>([]);
-  const [index, setIndex] = useState(2);
+  const [index, setIndex] = useState(1);
+  const [hashMore, setHashMore] = useState(true);
+
   async function handleMoreRepositories() {
     api
       .get(`users/${user.login}/repos?page=${index}`)
@@ -36,7 +38,11 @@ const Repositories = () => {
           }
         );
         if (filterRepositories.length === 0) {
+          setHashMore(false);
           return;
+        }
+        if (filterRepositories.length < 30) {
+          setHashMore(false);
         }
         setRepositories([...repositories, ...filterRepositories]);
         setIndex(index + 1);
@@ -46,25 +52,7 @@ const Repositories = () => {
       });
   }
   useEffect(() => {
-    api
-      .get(`users/${user.login}/repos`)
-      .then((response: AxiosResponse) => {
-        const notFilterRepositories = response.data as repositoryProps[];
-        const filterRepositories = notFilterRepositories.map(
-          (repository: repositoryProps) => {
-            return {
-              id: repository.id,
-              name: repository.name,
-              description: repository.description,
-              stargazers_count: repository.stargazers_count
-            };
-          }
-        );
-        setRepositories(filterRepositories);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
+    handleMoreRepositories();
   }, [user]);
   return (
     <MobileNavigator>
@@ -74,7 +62,7 @@ const Repositories = () => {
       <InfinityScroll
         dataLength={repositories.length}
         next={handleMoreRepositories}
-        hasMore={true}
+        hasMore={hashMore}
         loader={
           <p style={{ textAlign: "center" }}>
             <h4>Loading...</h4>
@@ -82,7 +70,7 @@ const Repositories = () => {
         }
         endMessage={
           <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
+            <b>Sem mais!</b>
           </p>
         }
       >

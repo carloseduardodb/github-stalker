@@ -1,4 +1,7 @@
+import { Transition } from "@headlessui/react";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { ReactNode } from "react";
 import { FiGithub, FiHome, FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -10,10 +13,27 @@ interface mobileNavigatorProps {
 
 const MobileNavigator = ({ children }: mobileNavigatorProps) => {
   const history = useHistory();
+  const [isShowing, setIsShowing] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsShowing(true), 500);
+  }, [children]);
+
   return (
     <div className="sm:flex sm:flex-col sm:items-center">
       <div className="sm:w-9/12">
-        {children}
+        <Transition
+          show={isShowing}
+          appear={true}
+          enter="transition ease-in-out duration-300 transform"
+          enterFrom="translate-x-16"
+          enterTo="-translate-x-4"
+          leave="transition ease-in-out duration-300 transform"
+          leaveFrom="-translate-x-0"
+          leaveTo="translate-x-full"
+        >
+          {children}
+        </Transition>
         <nav className="fixed bottom-0 bg-white w-full py-2 rounded-t-xl sm:w-9/12">
           <ul className="grid grid-cols-4 text-p-gray">
             <li>
