@@ -46,7 +46,7 @@ $ yarn start
 
 GithubStalker é perfeito para você acompanhar aquele seu usuário do github que você sempre visita.
 
-Este é um projeto na qual o prototipo visual e requisitos funcionais e não funcionais foram disponibilido pela empresa
+Este é um projeto na qual o prototipo visual e requisitos funcionais e não funcionais foram disponibilizados pela empresa
 <a href="https://www.luby.com.br/">lubysoftware</a>.
 
 Codificado com o ❤️ by Carlos Eduardo Dias Batista
